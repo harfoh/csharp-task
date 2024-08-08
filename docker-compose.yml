@@ -10,7 +10,7 @@ services:
     volumes:
       - postgres_data:/var/lib/postgresql/data
     networks:
-      network:  
+      - network  
 
   redis:
     image: redis:latest
@@ -26,7 +26,8 @@ services:
       - "5000"  
     networks:
       network:        
-
+        aliases:
+          - csharp
   nginx:
     image: nginx:latest
     ports:
@@ -36,9 +37,7 @@ services:
     volumes:
       - ./nginx/nginx.conf:/etc/nginx/nginx.conf
     networks:
-      network:  
-        aliases:
-          - csharp
+      - network
 
 volumes:
   postgres_data:
